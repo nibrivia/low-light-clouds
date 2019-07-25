@@ -1,0 +1,18 @@
+---
+title: "Amplifying low-light images"
+author: "Olivia Brode-Roger"
+date: "7/25/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(reshape2)
+library(hrbrthemes)
+```
+
+```{r read-img, }
+img <- readJPEG("67200736_2313972512189619_2342026017033420800_n.jpg")
+
+
+```
