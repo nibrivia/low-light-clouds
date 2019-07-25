@@ -8,11 +8,31 @@ output: html_document
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(reshape2)
-library(hrbrthemes)
+library(jpeg)
 ```
 
+We took very low-light images of clouds at night from a cellphone, this is an
+attempt to recover *something* from those images.
+
+Really all that's happening is a plotting of the raw values scaled to a color
+scale that's not just black, black, and slightly less black... Turns out, still
+can't see anything :(
+
 ```{r read-img, }
-img <- readJPEG("67200736_2313972512189619_2342026017033420800_n.jpg")
-
-
+for (filename in list.files(pattern = "*.jpg")) {
+    img <- filename %>%
+        readJPEG() %>% 
+        melt() %>% 
+        as_tibble() %>% 
+        rename(x = Var1,
+               y = Var2,
+               col = Var3)
+    
+    img %>% 
+        ggplot(aes(x = x,
+                   y = y,
+                   fill = col)) +
+        geom_raster() +
+        facet_wrap(~ col)
+}
 ```
