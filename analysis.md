@@ -7,11 +7,7 @@ output:
         keep_md: true
 ---
 
-```{r setup, include=FALSE}
-library(tidyverse)
-library(reshape2)
-library(jpeg)
-```
+
 
 We took very low-light images of clouds at night from a cellphone, this is an
 attempt to recover *something* from those images.
@@ -24,7 +20,8 @@ can't see anything :(
 The "1", "2", and "3" correspond to the red, green, and blue channels. I 
 would've fixed this had it worked, but I think this is the end of this work...
 
-```{r read-img, }
+
+```r
 for (filename in list.files(pattern = "*.jpg")) {
     img <- filename %>%
         readJPEG() %>% 
@@ -44,3 +41,5 @@ for (filename in list.files(pattern = "*.jpg")) {
     print(p)
 }
 ```
+
+![](analysis_files/figure-html/read-img-1.png)<!-- -->![](analysis_files/figure-html/read-img-2.png)<!-- -->![](analysis_files/figure-html/read-img-3.png)<!-- -->
