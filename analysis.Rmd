@@ -18,6 +18,10 @@ Really all that's happening is a plotting of the raw values scaled to a color
 scale that's not just black, black, and slightly less black... Turns out, still
 can't see anything :(
 
+
+The "1", "2", and "3" correspond to the red, green, and blue channels. I 
+would've fixed this had it worked, but I think this is the end of this work...
+
 ```{r read-img, }
 for (filename in list.files(pattern = "*.jpg")) {
     img <- filename %>%
@@ -28,11 +32,13 @@ for (filename in list.files(pattern = "*.jpg")) {
                y = Var2,
                col = Var3)
     
-    img %>% 
+    p <- img %>% 
         ggplot(aes(x = x,
                    y = y,
-                   fill = col)) +
+                   fill = value)) +
         geom_raster() +
         facet_wrap(~ col)
+        
+    print(p)
 }
 ```
